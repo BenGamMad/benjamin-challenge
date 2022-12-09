@@ -16,6 +16,8 @@
 	<properties>
 		<java.version>1.8</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<version.number>${git.commit.id.abbrev}</version.number>
+        <docker.repository.name>bgamboam/${project.artifactId}</docker.repository.name>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -52,6 +54,21 @@
 				<artifactId>maven-resources-plugin</artifactId>
 				<version>3.1.0</version>
 			</plugin>
+			
+
+			<plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>3.3.1</version>
+                <configuration>
+                    <to>
+                        <image>${docker.repository.name}</image>
+                        <tags>
+                            <tag>dev-${version.number}</tag>
+                        </tags>
+                    </to>
+                </configuration>
+            </plugin>
 		</plugins>
 		<finalName>service</finalName>
 	</build>
