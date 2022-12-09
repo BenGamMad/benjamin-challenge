@@ -42,7 +42,7 @@ pipeline{
         stage('Upload docker image') {
             steps {
                 withCredentials([string(credentialsId: 'docker-pwd', variable: 'docker-credentials')]) {
-                    sh 'sudo docker login -u bgamboam -p ${docker-pwd}'
+                    sh 'sudo docker login -u bgamboam -p ${docker-credentials}'
                     sh 'sudo docker image push bgamboam/spring-webapp:latest'
                 }
             }
