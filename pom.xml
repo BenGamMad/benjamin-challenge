@@ -63,9 +63,6 @@
                 <configuration>
                     <to>
                         <image>${docker.repository.name}</image>
-                        <tags>
-                            <tag>dev-${version.number}</tag>
-                        </tags>
                     </to>
                 </configuration>
             </plugin>
