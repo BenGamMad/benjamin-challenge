@@ -14,21 +14,13 @@ pipeline{
                 sh 'mvn -DskipTests clean install package'
             }
         }
-        stage('Building docker image'){
+        stage('Unit test') {
             steps {
-                sh 'docker image build -t spring-webapp .'
+                sh 'mvn test'
             }
-        }
-        stage('Tag docker image') {
-            steps {
-                sh 'docker image tag spring-webapp bgamboam/spring-webapp:latest'
-            }
-        }
-         stage('Upload docker image') {
-            steps {
-                withCredentials([string(credentialsId: 'dockerpwd-id', variable: 'dockerpwd')]) {
-                    sh 'docker login -u bgamboam -p ${dockerpwd}'
-                    sh 'docker image push bgamboam/spring-webapp:latest'
+            post {
+                always {
+                   junit 'target/surefire-reports/*.xml'
                 }
             }
         }
