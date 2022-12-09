@@ -29,13 +29,13 @@ pipeline{
 
         stage('Building docker image'){
             steps {
-                sh 'docker image build -t spring-webapp .'
+                sh 'sudo docker image build -t spring-webapp .'
             }
         }
 
         stage('Tag docker image') {
             steps {
-                sh 'docker image tag spring-webapp bgamboam/spring-webapp:latest'
+                sh 'sudo docker image tag spring-webapp bgamboam/spring-webapp:latest'
             }
         }
 
