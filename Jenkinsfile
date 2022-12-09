@@ -47,6 +47,12 @@ pipeline{
                 }
             }
         }
+
+        stage('Push Docker image'){
+            steps{
+                sh 'mvn compile jib:build'
+            }
+        }
         
     }
 }
