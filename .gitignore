@@ -12,4 +12,4 @@
 *.vsix
 
 target/
-.mvn/*
+
